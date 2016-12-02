@@ -8,30 +8,26 @@ You'll need `Go` and `Node` installed.
 
     go run main.go
 
-Apache Bench didn't work so I used [loadtest](https://www.npmjs.com/package/loadtest).
+Now run apache bench;
 
-    loadtest -n 100000 -c 8 -k http://127.0.0.1:8080/
+    ab -n 1000000 -c 8 -k http://127.0.0.1:8080/
 
 ## Performance Results
 
 The test was run on a MacBook Pro (Retina, 13-inch, Mid 2014), 3 GHz Intel Core i7 with 16 GB 1600 MHz DDR3 memory.
 
-    Concurrency level:   8
-    Agent:               keepalive
-
-    Completed requests:  100000
-    Total errors:        0
-    Total time:          19.489376383 s
-    Requests per second: 5131
-    Total time:          19.489376383 s
-
-    Percentage of the requests served within a certain time
-      50%      1 ms
-      90%      1 ms
-      95%      1 ms
-      99%      2 ms
-     100%      24 ms (longest request)
+    Concurrency Level:      8
+    Time taken for tests:   20.064 seconds
+    Complete requests:      1000000
+    Failed requests:        0
+    Keep-Alive requests:    998005
+    Total transferred:      158990025 bytes
+    HTML transferred:       20000000 bytes
+    Requests per second:    49839.65 [#/sec] (mean)
+    Time per request:       0.161 [ms] (mean)
+    Time per request:       0.020 [ms] (mean, across all concurrent requests)
+    Transfer rate:          7738.29 [Kbytes/sec] received
 
 ## Problems Found
 
-It's slow. Need to work out what's going wrong.
+None. But I thought it would be faster.
