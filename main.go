@@ -14,6 +14,7 @@ func handleConnection(conn net.Conn, keepAlive int) {
 	defer conn.Close()
 	for keepAlive > 0 {
 		keepAlive--
+		// conn.SetReadDeadline(time.Now().Add(1000 * time.Millisecond))
 		b := make([]byte, 1000)
 		for count, _ := conn.Read(b); count == 0; {
 			time.Sleep(1)
@@ -29,7 +30,8 @@ func handleConnection(conn net.Conn, keepAlive int) {
 			header += "Connection: close" + CRLF
 		}
 		conn.Write([]byte(header + CRLF + body))
-		// fmt.Println(b)
+		// fmt.Println(string(b))
+		// fmt.Println(keepAlive)
 	}
 }
 
